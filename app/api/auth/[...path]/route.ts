@@ -13,21 +13,6 @@ export async function POST(req: Request, context: unknown) {
         { status: 403 },
       );
     const bytes = await readBoundedBody(req, 16000);
-    let body: Record<string, unknown> = {};
-    try {
-      body = JSON.parse(new TextDecoder().decode(bytes));
-    } catch {
-      /* Let the managed auth service validate non-JSON endpoint payloads. */
-    }
-    if (
-      typeof body.email === "string" &&
-      body.email.trim().toLowerCase() !==
-        process.env.OWNER_EMAIL?.trim().toLowerCase()
-    )
-      return Response.json(
-        { error: { message: "This notebook is private." } },
-        { status: 403 },
-      );
     return handlers.POST(
       new Request(req, { body: bytes.buffer as ArrayBuffer }),
       context as never,

@@ -9,7 +9,7 @@
     "dev": "next dev --port 5173",
     "build": "next build",
     "start": "next start --port 5173",
-    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "test": "node --experimental-transform-types --experimental-test-module-mocks --test tests/*.test.ts",
     "typecheck": "tsc --noEmit",
     "db:migrate": "node --env-file=.env.local scripts/migrate-postgres.mjs"
   },

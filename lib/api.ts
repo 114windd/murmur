@@ -1,6 +1,6 @@
-import { database, bucket } from "./storage";
-import { isOwnedAudioPath } from "./platform-rules";
-import { getCurrentUser } from "./auth/server";
+import { database, bucket } from "./storage.ts";
+import { isOwnedAudioPath } from "./platform-rules.ts";
+import { getCurrentUser } from "./auth/server.ts";
 import { z } from "zod";
 import {
   UserInputError,
@@ -8,9 +8,9 @@ import {
   validateReminder,
   validateSummary,
   validateThought,
-} from "./core";
-import type { Note, Thought } from "./core";
-import { isSameOriginRequest, BodyLimitError, readBoundedBody } from "./http";
+} from "./core.ts";
+import type { Note, Thought } from "./core.ts";
+import { isSameOriginRequest, BodyLimitError, readBoundedBody } from "./http.ts";
 
 class ApiError extends Error {
   constructor(

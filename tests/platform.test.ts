@@ -5,29 +5,20 @@ import {
   isOwnedAudioPath,
   parameterize,
 } from "../lib/platform-rules.ts";
-test("only the verified notebook owner is allowed into the app", () => {
+test("verified accounts can open their own notebook; unverified sessions are refused", () => {
   assert.equal(
-    isAllowedUser(
-      { email: "Owner@example.test", emailVerified: true },
-      "owner@example.test",
-    ),
+    isAllowedUser({ email: "Owner@example.test", emailVerified: true }),
     true,
   );
   assert.equal(
-    isAllowedUser(
-      { email: "other@example.test", emailVerified: true },
-      "owner@example.test",
-    ),
-    false,
+    isAllowedUser({ email: "friend@example.test", emailVerified: true }),
+    true,
   );
   assert.equal(
-    isAllowedUser(
-      { email: "owner@example.test", emailVerified: false },
-      "owner@example.test",
-    ),
+    isAllowedUser({ email: "owner@example.test", emailVerified: false }),
     false,
   );
-  assert.equal(isAllowedUser(null, "owner@example.test"), false);
+  assert.equal(isAllowedUser(null), false);
 });
 test("uploaded recordings must be under the signed-in owner prefix", () => {
   const path = "audio/u1/4c3b450c-8879-4c6d-beca-b7a224c5e651.webm";
