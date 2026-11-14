@@ -13,7 +13,12 @@ export async function uploadRecording(blob: Blob): Promise<string> {
   const result = await upload(
     uploadPrefix + crypto.randomUUID() + "." + ext,
     file,
-    { access: "private", handleUploadUrl: "/api/uploads" },
+    {
+      access: "private",
+      handleUploadUrl: "/api/uploads",
+      // Blob infers video/webm from the extension unless audio is explicit.
+      contentType: file.type,
+    },
   );
   return result.pathname;
 }
