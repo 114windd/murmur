@@ -1,0 +1,7 @@
+.env*
+.dev.vars*
+.git
+node_modules
+work
+artifacts
+outputs

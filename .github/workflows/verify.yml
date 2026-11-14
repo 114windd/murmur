@@ -1,0 +1,25 @@
+name: Verify
+on:
+  push:
+    branches: [main, build/murmur-web-app]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  verify:
+    name: Verify
+    runs-on: ubuntu-latest
+    env:
+      NEON_AUTH_BASE_URL: https://auth.example.test/neondb/auth
+      NEON_AUTH_COOKIE_SECRET: ci-only-fixture-not-a-production-secret-000000
+      OWNER_EMAIL: owner@example.invalid
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm test
+      - run: npm run build
