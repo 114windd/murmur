@@ -270,7 +270,7 @@ export default function SignIn() {
             )}
           </div>
           <p className="auth-private">
-            <LockKeyhole size={12} /> This notebook is reserved for its owner.
+            <LockKeyhole size={12} /> Your own notebook. Your thoughts stay private.
           </p>
         </form>
       </div>

@@ -1,12 +1,7 @@
 export function isAllowedUser(
   user: { email: string; emailVerified: boolean } | null,
-  ownerEmail: string,
 ) {
-  return (
-    !!user &&
-    user.emailVerified === true &&
-    user.email.toLowerCase() === ownerEmail.toLowerCase()
-  );
+  return !!user && user.emailVerified === true;
 }
 export function isOwnedAudioPath(path: string, owner: string) {
   return (

@@ -1,5 +1,5 @@
 import { createNeonAuth } from "@neon/auth/next/server";
-import { isAllowedUser } from "../platform-rules";
+import { isAllowedUser } from "../platform-rules.ts";
 export const auth = createNeonAuth({
   baseUrl: process.env.NEON_AUTH_BASE_URL!,
   cookies: { secret: process.env.NEON_AUTH_COOKIE_SECRET! },
@@ -10,10 +10,7 @@ export async function getCurrentUser() {
   const user = session?.user;
   if (
     !user ||
-    !isAllowedUser(
-      { email: user.email, emailVerified: user.emailVerified },
-      process.env.OWNER_EMAIL?.trim() || "",
-    )
+    !isAllowedUser({ email: user.email, emailVerified: user.emailVerified })
   )
     return null;
   return {
