@@ -1,5 +1,7 @@
 # Murmur delivery
 
+Lifecycle-ID: 3611771b-5dee-4faf-9665-787a3aab5544
+
 Profile: high risk because owner authentication, private recordings, external AI and durable storage cross trust boundaries. No image/release packaging overlay.
 
 Outcome: a personal browser notebook with a white and muted violet aesthetic. Capture audio by holding the microphone or R, retain audio and editable transcripts, attach chronological follow-ups, summarise complete threads with explicit action items, search saved ideas, favourite them, and schedule reminders with calendar export. It must work on phone and desktop.
